@@ -1,4 +1,4 @@
-exports.bodyhtml = (title, body, linkText, link) => `
+exports.bodyhtmlAuthentication = (token) => `
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +31,10 @@ exports.bodyhtml = (title, body, linkText, link) => `
     --secondary: #009242;
     --light: #FFFFFF;
     --dark: #171616;
+}
+
+a:hover{
+    cursor: pointer;
 }
 
 h1, h3{
@@ -105,6 +109,20 @@ span, a{
     margin-bottom: 0;
 }
 
+.main .order-id h3{
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+}
+
+.main .order-id a{
+    text-decoration: none;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+}
+
 .section{
     padding: 3rem 3rem 3rem 3rem;
     display: flex;
@@ -167,32 +185,17 @@ span, a{
 <body>
     <div class="header">
         <img src="http://imgfz.com/i/ONB0t4j.png"></img>
-        <h1>Hey! Thank you for purchasing Film<span>Coin</span></h1>
-        <p>Our 20% discounted General Pre-Sale offer has been applied to your purchase.</p>
+        <h1>Hey! Your are just from a Step to purchase The Film<span>Coin</span></h1>
+        <p>Our 20% discounted General Pre-Sale is on for December 2021.</p>
     </div>
 
     <div class="main">
-        <div class="title-p">
-            <h3>Film<span>Coin</span></h3>
-            <p>ERC20: The FilmCoin Utility Token will be created on the 28th February 2022 using the ERC-20 standard and
-                deployed to the Ethereum blockchain acting as a native currency for the Darkhorse Film Studios
-                decentralized application program (DAPP)</p>
-            <p>If you don’t already have a digital wallet please visit our partner website <a href="https://www.fmfw.io"
-                    target="_blank">www.fmfw.io</a> and create your personal wallet prior to the 28th February 2022
-                and forward your wallet details to our FilmCoin customer care team.</p>
+        <div class="order-id">
+            <h3>Please Click on the Following link to purchase FilmCoin:</h3>
+            <a href="http://thefilmcoin.io/#/payment2/?token=${token}" target="_blank">${token}</a>
         </div>
 
-        <div class="title-p">
-            <h3>ERC<span>20</span></h3>
-            <p>An ERC20 token is a standard used for creating and issuing smart contracts on the Ethereum blockchain.
-                Smart contracts can then be used to create smart property or tokenized assets that people can invest in.
-                ERC stands for "Ethereum request for comment," and the ERC20 standard was implemented in 2015.</p>
-            <p>The ERC-20 introduces a standard for Fungible Tokens, in other words, they have a property that makes
-                each
-                Token be exactly the same (in type and value) of another Token. For example, an ERC-20 Token acts just
-                like
-                the ETH, meaning that 1 Token is and will always be equal to all the other Tokens.</p>
-        </div>
+        
     </div>
 
     <div class="section">
@@ -207,19 +210,19 @@ span, a{
 
     <div class="footer">
         <div class="links-footer">
-            <a href="#" target="_blank">
+            <a href="https://twitter.com/TheFilmCoin" target="_blank">
                 <img src="http://imgfz.com/i/5pg1DT8.png"></img>
             </a>
-            <a href="#" target="_blank">
+            <a href="https://www.instagram.com/thefilmcoin/?hl=es-la" target="_blank">
                 <img src="http://imgfz.com/i/IpehxQm.png"></img>
             </a>
             <a href="#" target="_blank">
                 <img src="http://imgfz.com/i/OnEoghA.png"></img>
             </a>
-            <a href="#" target="_blank">
+            <a href="https://www.facebook.com/The-Film-Coin-111549944695856" target="_blank">
                 <img src="http://imgfz.com/i/ecSQKa2.png"></img>
             </a>
-            <a href="#" target="_blank">
+            <a href="https://www.tiktok.com/@thefilmcoin?lang=es" target="_blank">
                 <img src="http://imgfz.com/i/3ZbxdB2.png"></img>
             </a>
         </div>

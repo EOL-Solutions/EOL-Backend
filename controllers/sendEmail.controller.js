@@ -1,20 +1,18 @@
 const { transporter } = require("../email/email");
-const { bodyhtml } = require("../email/html")
+const { bodyhtmlAuthentication } = require("../email/htmlAuthentication")
+const { bodyhtmlVerification } = require("../email/htmlVerification")
 
 const sendEmail = async ({email, token, isAuth}, res) => {
 
   const subject = isAuth?`Authentication email`:`Verification Transaction`
-  const title = isAuth?`Authentication email`:`Verification Transaction`
-  const body = isAuth?`Lorem Ipsum`:`Lorem Ipsum`
-  const linkText = isAuth?`Process payment`:``
-  const link = isAuth?`http://www.google.com/?token=${token}`:`` //Add verification link
+  const body = isAuth?`Authentication email`:`Verification Transaction`
 
   const mailData = {
-    from: '"EOL Development" <EOL@example.com>',
+    from: "FilmCoin",
     to: email,
     subject: subject,
     text: body,
-    html: bodyhtml(title,body,linkText,link),
+    html: isAuth?bodyhtmlAuthentication(token):bodyhtmlVerification(),
   }
 
   transporter.sendMail(mailData, (error, info) => {
