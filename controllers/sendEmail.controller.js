@@ -8,7 +8,7 @@ const sendEmail = async ({email, token, isAuth}, res) => {
   const body = isAuth?`Authentication email`:`Verification Transaction`
 
   const mailData = {
-    from: "FilmCoin",
+    from: '"FilmCoins" <support@thefilmcoin.io>',
     to: email,
     subject: subject,
     text: body,
