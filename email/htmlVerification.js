@@ -177,7 +177,7 @@ span, a{
             <p>ERC20: The FilmCoin Utility Token will be created on the 28th February 2022 using the ERC-20 standard and
                 deployed to the Ethereum blockchain acting as a native currency for the Darkhorse Film Studios
                 decentralized application program (DAPP)</p>
-            <p>If you don’t already have a digital wallet please visit our <a href="https://www.fmfw.io"
+            <p>If you don’t already have a digital wallet please visit our <a href="http://thefilmcoin.io/#/"
             target="_blank">partner website</a> and create your personal wallet prior to the 28th February 2022
                 and forward your wallet details to our FilmCoin customer care team.</p>
         </div>
