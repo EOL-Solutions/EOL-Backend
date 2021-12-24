@@ -12,14 +12,14 @@ module.exports = (router) => {
     "/sendinfo",
     [
       body("email").isEmail().not().isEmpty(),
-      body("country").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}).not().isEmpty(),
+      body("country").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}),
       body("name").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}).not().isEmpty(),
       body("lastname").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}).not().isEmpty(),
-      body("address").isAlphanumeric('en-US', {ignore: ' -'}).not().isEmpty(),
+      body("address").isAlphanumeric('en-US', {ignore: ' -'}),
       body("wallet").isAlphanumeric().not().isEmpty(),
-      body("city").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}).not().isEmpty(),
-      body("province").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}).not().isEmpty(),
-      body("zipcode").isInt().not().isEmpty(),
+      body("city").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}),
+      body("province").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}),
+      body("zipcode").isAlphanumeric(),
       body("phone").isInt().not().isEmpty()
     ],
     async (req,res) => {
