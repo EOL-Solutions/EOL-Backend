@@ -61,7 +61,7 @@ module.exports = (router) => {
           isAuth: true
         }
         try{
-          //await addNewContactInfo(newObj,myConnection,sendEmailObj.token)
+          await addNewContactInfo(newObj,myConnection,sendEmailObj.token)
           await sendEmail(sendEmailObj,res)
         }catch(err){
           console.log(err)
