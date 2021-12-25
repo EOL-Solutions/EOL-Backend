@@ -37,7 +37,7 @@ async function addNewContactInfo({email, country, name, lastname, address, walle
 }
 
 async function addOrderID(connection, orderID, token){
-    const query = `UPDATE transactions SET orderID='${orderID}' WHERE token='${token}';`
+    const query = `UPDATE transactions SET orderID= IF(orderID IS NULL OR orderID= '', '${orderID}', orderID) WHERE token='${token}';`
     try{
         await connection.query(query, (err, result) => {
             if(err) throw err
