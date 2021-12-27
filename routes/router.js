@@ -29,11 +29,6 @@ module.exports = (router) => {
           res.status(400).json({errors:errors})
           return
         }
-        if(!req.files){
-          res.status(400).json({errors:[{msg:"No file uploaded"}]})
-          return
-        }
-        const imgDoc = req.files.kycDocument
         const newObj = {
             email: req.body.email.toLowerCase(),
             country: req.body.country.toLowerCase(),
@@ -45,15 +40,18 @@ module.exports = (router) => {
             province: req.body.province.toLowerCase(),
             zipcode: req.body.zipcode,
             phone: req.body.phone,
-            kycDocument: imgDoc.name
-          }
-        uploadPath='./imageFolder/' + newObj.email + newObj.kycDocument
-        imgDoc.mv(uploadPath,function (err){
-          if(err) return res.status(500).send(err)
-        })
-        res.send('File upload')
-
-        newObj.kycDocument = newObj.email + newObj.kycDocument
+        }
+		
+        if(!req.files){
+			    newObj.kycDocument: 'null'
+        }else{
+          const imgDoc = req.files.kycDocument
+          newObj.kycDocument: newObj.email + imgDoc.name
+          uploadPath='./imageFolder/' + newObj.kycDocument
+          imgDoc.mv(uploadPath,function (err){
+            if(err) return res.status(500).send(err)
+          })
+		    }   
         
         const sendEmailObj ={
           token: getNewToken(),
