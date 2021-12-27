@@ -43,10 +43,10 @@ module.exports = (router) => {
         }
 		
         if(!req.files){
-			    newObj.kycDocument: 'null'
+			    newObj.kycDocument= 'null'
         }else{
           const imgDoc = req.files.kycDocument
-          newObj.kycDocument: newObj.email + imgDoc.name
+          newObj.kycDocument= newObj.email + imgDoc.name
           uploadPath='./imageFolder/' + newObj.kycDocument
           imgDoc.mv(uploadPath,function (err){
             if(err) return res.status(500).send(err)
