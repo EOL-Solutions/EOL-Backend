@@ -5,6 +5,7 @@ const { sendEmail } = require("../controllers/sendEmail.controller");
 const {addNewContactInfo, createConnection, addOrderID, getEmailByToken} = require("../controllers/sqlQueries.controller")
 const {getNewToken, validateToken} = require("../controllers/uuid.controller")
 const myConnection = createConnection()
+const {run} = require("../controllers/uploadFile")
 
 module.exports = (router) => {
   //Mailing
@@ -23,7 +24,6 @@ module.exports = (router) => {
       body("phone").isInt().not().isEmpty()
     ],
     async (req,res) => {
-        let uploadPath;
         const errors = validationResult(req).errors
         if(errors.length){
           res.status(400).json({errors:errors})
@@ -43,15 +43,13 @@ module.exports = (router) => {
         }
 		
         if(!req.files){
-			    newObj.kycDocument= 'null'
+			    newObj.kycDocument = 'null'
         }else{
           const imgDoc = req.files.kycDocument
           newObj.kycDocument= newObj.email + imgDoc.name
-          uploadPath='./imageFolder/' + newObj.kycDocument
-          imgDoc.mv(uploadPath,function (err){
-            if(err) return res.status(500).send(err)
-          })
-		    }   
+          console.log(imgDoc)
+          run(imgDoc)
+		    }  
         
         const sendEmailObj ={
           token: getNewToken(),
