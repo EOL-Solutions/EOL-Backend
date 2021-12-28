@@ -5,11 +5,11 @@ const params = {
   Bucket: process.env.BUCKET
 };
 
-const run = async (document) => {
+async function uploadDocument (document, token) {
 
   try {
     params.Body = document.data
-    params.Key = document.name
+    params.Key = `${token}_${document.name}`
     const results = await s3Client.upload(params, function (err, data) {
       if (err) {
         console.log("Error", err);
@@ -22,4 +22,4 @@ const run = async (document) => {
     console.log("Error", err);
   }
 };
-module.exports = {run}
+module.exports = { uploadDocument }

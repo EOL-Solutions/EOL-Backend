@@ -1,13 +1,20 @@
-const {body, validationResult} = require("express-validator");
+const { body } = require("express-validator");
 
 // Controladores
-const { sendEmail } = require("../controllers/sendEmail.controller");
-const {addNewContactInfo, createConnection, addOrderID, getEmailByToken} = require("../controllers/sqlQueries.controller")
-const {getNewToken, validateToken} = require("../controllers/uuid.controller")
+const { createConnection } = require("../controllers/sqlQueries.controller");
+const { sendInfo } = require("../controllers/sendInfo.controller")
+const { paypalTransaction } = require("../controllers/paypalTransaction.controller")
+
 const myConnection = createConnection()
-const {run} = require("../controllers/uploadFile")
 
 module.exports = (router) => {
+  router.get("/", (req,res)=>{
+    res.status(200).json({msg:"ok"})
+  })
+  router.post("/", (req,res)=>{
+    res.status(200).json({msg:"ok"})
+  })
+
   //Mailing
   router.post(
     "/sendinfo",
@@ -23,47 +30,10 @@ module.exports = (router) => {
       body("zipcode").isAlphanumeric(),
       body("phone").isInt().not().isEmpty()
     ],
-    async (req,res) => {
-        const errors = validationResult(req).errors
-        if(errors.length){
-          res.status(400).json({errors:errors})
-          return
-        }
-        const newObj = {
-            email: req.body.email.toLowerCase(),
-            country: req.body.country.toLowerCase(),
-            name: req.body.name.toLowerCase(),
-            lastname: req.body.lastname.toLowerCase(),
-            address: req.body.address.toLowerCase(),
-            wallet: req.body.wallet.toLowerCase(),
-            city: req.body.city.toLowerCase(),
-            province: req.body.province.toLowerCase(),
-            zipcode: req.body.zipcode,
-            phone: req.body.phone,
-        }
-		
-        if(!req.files){
-			    newObj.kycDocument = 'null'
-        }else{
-          const imgDoc = req.files.kycDocument
-          newObj.kycDocument= newObj.email + imgDoc.name
-          console.log(imgDoc)
-          run(imgDoc)
-		    }  
-        
-        const sendEmailObj ={
-          token: getNewToken(),
-          email: newObj.email,
-          isAuth: true
-        }
-        try{
-          await addNewContactInfo(newObj,myConnection,sendEmailObj.token)
-          await sendEmail(sendEmailObj,res)
-        }catch(err){
-          console.log(err)
-        }
+    async (req, res) => {
+      await sendInfo(req, res, myConnection)
     }
-  );
+  )
   
 
   router.post(
@@ -73,30 +43,8 @@ module.exports = (router) => {
       body("orderID").isAlphanumeric('en-US', {ignore: ' -'}).not().isEmpty()
     ],
     async (req,res) => {
-        const errors = validationResult(req).errors
-        if(errors.length){
-          res.status(400).json({errors:errors})
-          return
-        }
-        const token = req.body.token
-        const orderID = req.body.orderID
-        try{
-          const isValid = validateToken(token)
-          if(!isValid){
-            res.status(400).json({errors:["Invalid token"]})
-            return
-          }
-          await addOrderID(myConnection, orderID, token)
-          const email = await getEmailByToken(myConnection, token)
-          if(!email){
-            res.status(400).json({errors:["Invalid token"]})
-            return
-          }
-          await sendEmail({email: email, token: orderID, isAuth:false},res)
-        }catch(err){
-          console.log(err)
-        }
+      await paypalTransaction(req, res, myConnection)
     }
-    )
+  )
 
 }
