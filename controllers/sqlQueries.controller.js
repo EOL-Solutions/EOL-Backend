@@ -16,11 +16,11 @@ function createConnection() {
 
 async function addNewContactInfo({email, country, name, lastname, address, wallet, city, province, zipcode, phone, kycDocument}, connection, token){
     try{
-        const countriesQuery = `(SELECT code FROM countries WHERE name='${country}')`
-        const provinceQuery = `(SELECT code FROM provinces WHERE name='${province}')`
+        const countriesQuery = `(SELECT code FROM countries WHERE name='${country}')`   //Change country with this query
+        const provinceQuery = `(SELECT code FROM provinces WHERE name='${province}')`   //Change province with this query
         const tokenSelectQuery = `(SELECT id FROM transactions WHERE token='${token}')`
         const tokenQuery = `INSERT INTO transactions (token) VALUES ('${token}');`
-        const contactQuery = `INSERT INTO contact_information (email, country, name, lastname, address, wallet, city, province, zipcode, phone, transactionID, kyc_document) VALUES ('${email}', ${countriesQuery}, '${name}', '${lastname}', '${address}', '${wallet}', '${city}', ${provinceQuery}, '${zipcode}', '${phone}', ${tokenSelectQuery}, '${kycDocument}');`
+        const contactQuery = `INSERT INTO contact_information (email, country, name, lastname, address, wallet, city, province, zipcode, phone, transactionID, kyc_document) VALUES ('${email}', '0', '${name}', '${lastname}', '${address}', '${wallet}', '${city}', '0', '${zipcode}', '${phone}', ${tokenSelectQuery}, '${kycDocument}');`
         
         await connection.query(tokenQuery, (err, result) => {
             if(err) throw err
