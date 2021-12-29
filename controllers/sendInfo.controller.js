@@ -22,6 +22,8 @@ async function sendInfo (req, res, myConnection) {
         province: req.body.province.toLowerCase(),
         zipcode: req.body.zipcode,
         phone: req.body.phone,
+        kycDocument: 'null',
+        refCode: null
     }
     const sendEmailObj ={
         token: token,
@@ -29,13 +31,14 @@ async function sendInfo (req, res, myConnection) {
         isAuth: true
     }
     
-    if(!req.files){
-            formData.kycDocument = 'null'
-    }else{
+    if(req.files){
       const imgDoc = req.files.kycDocument
       formData.kycDocument = formData.email + imgDoc.name
       uploadDocument(imgDoc, token)
-    }  
+    }
+    if(req.body.refCode && req.body.refCode !== "null"){
+      formData.refCode = req.body.refCode.toLowerCase()
+    }
 
     try{
         await addNewContactInfo(formData, myConnection, token)

@@ -14,12 +14,12 @@ function createConnection() {
     return mysql.createConnection(configConnection)
 }
 
-async function addNewContactInfo({email, country, name, lastname, address, wallet, city, province, zipcode, phone, kycDocument}, connection, token){
+async function addNewContactInfo({email, country, name, lastname, address, wallet, city, province, zipcode, phone, kycDocument, refCode}, connection, token){
     try{
         const countriesQuery = `(SELECT code FROM countries WHERE name='${country}')`   //Change country with this query
         const provinceQuery = `(SELECT code FROM provinces WHERE name='${province}')`   //Change province with this query
         const tokenSelectQuery = `(SELECT id FROM transactions WHERE token='${token}')`
-        const tokenQuery = `INSERT INTO transactions (token) VALUES ('${token}');`
+        const tokenQuery = `INSERT INTO transactions (token, ref_code) VALUES ('${token}', ${refCode? "'" + refCode + "'" : 'NULL'});`
         const contactQuery = `INSERT INTO contact_information (email, country, name, lastname, address, wallet, city, province, zipcode, phone, transactionID, kyc_document) VALUES ('${email}', '0', '${name}', '${lastname}', '${address}', '${wallet}', '${city}', '0', '${zipcode}', '${phone}', ${tokenSelectQuery}, '${kycDocument}');`
         
         await connection.query(tokenQuery, (err, result) => {
@@ -36,8 +36,25 @@ async function addNewContactInfo({email, country, name, lastname, address, walle
     }
 }
 
-async function addOrderID(connection, orderID, token){
-    const query = `UPDATE transactions SET orderID= IF(orderID IS NULL OR orderID= '', '${orderID}', orderID) WHERE token='${token}';`
+async function addOrderID(connection, orderID, token, amount){
+    const addOrderQuery = `UPDATE transactions SET orderID= IF(orderID IS NULL OR orderID= '', '${orderID}', orderID) WHERE token='${token}';`
+    const checkAmountQuery = `SELECT ref_code FROM transactions WHERE token='${token}';`
+    try{
+        await connection.query(addOrderQuery, (err, result) => {
+            if(err) throw err
+            console.log(result)
+        })
+        await connection.query(checkAmountQuery, (err, result) => {
+            if(err) throw err
+            if(result[0].ref_code !== null) setRefTransaction(connection, result[0].ref_code, amount)
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
+
+async function setRefTransaction(connection, ref_code, amount){
+    const query = `INSERT INTO temp_amount_tracking (ref_code_temp, amount) VALUES ('${ref_code}', ${amount});`
     try{
         await connection.query(query, (err, result) => {
             if(err) throw err

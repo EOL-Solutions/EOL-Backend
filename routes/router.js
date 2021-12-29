@@ -28,7 +28,8 @@ module.exports = (router) => {
       body("city").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}),
       body("province").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}),
       body("zipcode").isAlphanumeric(),
-      body("phone").isInt().not().isEmpty()
+      body("phone").isInt().not().isEmpty(),
+      body("refCode").isAlphanumeric()
     ],
     async (req, res) => {
       await sendInfo(req, res, myConnection)
@@ -40,7 +41,8 @@ module.exports = (router) => {
     "/paypaltransaction",
     [
       body("token").isAlphanumeric('en-US', {ignore: ' -'}).not().isEmpty(),
-      body("orderID").isAlphanumeric('en-US', {ignore: ' -'}).not().isEmpty()
+      body("orderID").isAlphanumeric('en-US', {ignore: ' -'}).not().isEmpty(),
+      body("amount").isFloat().not().isEmpty()
     ],
     async (req,res) => {
       await paypalTransaction(req, res, myConnection)
