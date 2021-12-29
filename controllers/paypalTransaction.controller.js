@@ -13,13 +13,14 @@ async function paypalTransaction (req, res, myConnection){
     const token = req.body.token
     const orderID = req.body.orderID
     const amount = req.body.amount
+    const currency = req.body.currency
     try{
       const isValid = validateToken(token)
       if(!isValid){
         res.status(400).json({errors:["Invalid token"]})
         return
       }
-      await addOrderID(myConnection, orderID, token, amount)
+      await addOrderID(myConnection, orderID, token, amount, currency)
       const email = await getEmailByToken(myConnection, token)
       if(!email){
         res.status(400).json({errors:["Invalid token"]})

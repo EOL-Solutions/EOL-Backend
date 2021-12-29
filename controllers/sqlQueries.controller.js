@@ -36,7 +36,7 @@ async function addNewContactInfo({email, country, name, lastname, address, walle
     }
 }
 
-async function addOrderID(connection, orderID, token, amount){
+async function addOrderID(connection, orderID, token, amount, currency){
     const addOrderQuery = `UPDATE transactions SET orderID= IF(orderID IS NULL OR orderID= '', '${orderID}', orderID) WHERE token='${token}';`
     const checkAmountQuery = `SELECT ref_code FROM transactions WHERE token='${token}';`
     try{
@@ -46,15 +46,15 @@ async function addOrderID(connection, orderID, token, amount){
         })
         await connection.query(checkAmountQuery, (err, result) => {
             if(err) throw err
-            if(result[0].ref_code !== null) setRefTransaction(connection, result[0].ref_code, amount)
+            if(result[0].ref_code !== null) setRefTransaction(connection, result[0].ref_code, amount, currency)
         })
     }catch(err){
         console.log(err)
     }
 }
 
-async function setRefTransaction(connection, ref_code, amount){
-    const query = `INSERT INTO temp_amount_tracking (ref_code_temp, amount) VALUES ('${ref_code}', ${amount});`
+async function setRefTransaction(connection, ref_code, amount, currency){
+    const query = `INSERT INTO temp_amount_tracking (ref_code_temp, amount, currency) VALUES ('${ref_code}', ${amount}, '${currency}');`
     try{
         await connection.query(query, (err, result) => {
             if(err) throw err

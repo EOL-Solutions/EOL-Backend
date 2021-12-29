@@ -42,7 +42,8 @@ module.exports = (router) => {
     [
       body("token").isAlphanumeric('en-US', {ignore: ' -'}).not().isEmpty(),
       body("orderID").isAlphanumeric('en-US', {ignore: ' -'}).not().isEmpty(),
-      body("amount").isFloat().not().isEmpty()
+      body("amount").isFloat().not().isEmpty(),
+      body("currency").isAlpha().not().isEmpty()
     ],
     async (req,res) => {
       await paypalTransaction(req, res, myConnection)
