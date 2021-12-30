@@ -4,8 +4,8 @@ const { bodyhtmlVerification } = require("../email/htmlVerification")
 
 const sendEmail = async ({email, token, isAuth}, res) => {
 
-  const subject = isAuth?`Authentication email`:`Verification Transaction`
-  const body = isAuth?`Authentication email`:`Verification Transaction`
+  const subject = isAuth?`Authentication email`:`FilmCoin Transaction Successful`
+  const body = isAuth?`Authentication email`:`FilmCoin Transaction Successful`
 
   const mailData = {
     from: '"FilmCoins" <support@thefilmcoin.io>',
