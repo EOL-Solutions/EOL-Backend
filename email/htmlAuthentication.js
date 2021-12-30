@@ -38,7 +38,7 @@ exports.bodyhtmlAuthentication = (token) => `
                     <td width="600" height="300" style="text-align: center; padding:0 15% 0 15%;">                       
                             
                         <h3 style="font-family: 'Space Mono', monospace;">Please Click on the Following link to purchase FilmCoin:</h3>
-                        <a style="font-family: 'Space Mono', monospace; color: #009242; font-size: 24px;" href="http://thefilmcoin.io/#/payment2/?token=${token}" target="_blank">${token}</a>                
+                        <a style="font-family: 'Space Mono', monospace; color: #009242; font-size: 24px;" href="https://thefilmcoin.io/#/payment2/?token=${token}" target="_blank">${token}</a>                
 
                         <p style="font-family: 'Space Grotesk', sans-serif;">Please contact our customer care representatives for any further assistance:
                             <a href="mailto:support@thefilmcoin.io" target="_blank" style="color: #009242;">support@thefilmcoin.io</a>
