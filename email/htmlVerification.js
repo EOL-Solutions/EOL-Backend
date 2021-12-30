@@ -30,13 +30,13 @@ exports.bodyhtmlVerification = () => `
 
                 <tr width="100%" height="100%" style="background:url(http://imgfz.com/i/ONB0t4j.png), radial-gradient(78.74% 131.71% at 97.24% -34.1%, #00ED65 0%, #04C857 8.09%, #089946 19.99%, #0C7137 32.3%, #0F4F2B 44.81%, #123621 57.6%, #14231A 70.78%, #151916 84.57%, #151515 100%); background-size: cover;">
                     <td width="600" height="150" style="text-align: center;">
-                        <h1 style="margin: 10% 8% 2% 8%; font-family: 'Monument Extended', 'Titillium Web', Tahoma, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 24px; line-height: 28.8px; color: #FFFFFF;">Hey! Thank you for purchasing Film<span style="color: #009242;">Coin</span></h1>
-                        <p style=" margin: 0 12% 10% 12%; color: #FFFFFF; font-family: 'Space Mono', monospace; text-transform: uppercase; font-weight: 400; line-height: 19.25px; font-size: 13px;">Our 20% discounted General Pre-Sale offer has been applied to your purchase.</p>
+                        <h1 style="margin: 10% 8% 2% 8%; font-family: 'Space Grotesk', 'Titillium Web', Tahoma, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 24px; line-height: 28.8px; color: #FFFFFF;">Hey! Thank you for purchasing Film<span style="color: #009242;">Coin</span></h1>
+                        <p style=" margin: 0 12% 10% 12%; color: #FFFFFF; font-family: 'Space Grotesk', monospace; text-transform: uppercase; font-weight: 400; line-height: 19.25px; font-size: 13px;">Our 20% discounted General Pre-Sale offer has been applied to your purchase.</p>
                     </td>
                 </tr>
                 <tr width="100%" height="100%" bgcolor="#FFFFFF" style="color: #333333;">
                     <td width="600" height="300" style="text-align: center; padding:0 15% 0 15%;"> 
-                        <h3 style="font-family: 'Monument Extended', 'Titillium Web', Tahoma, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 24px; line-height: 28.8px; color: #171616;">Film<span style="color: #009242;">Coin</span></h3>
+                        <h3 style="font-family: 'Space Grotesk', 'Titillium Web', Tahoma, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 24px; line-height: 28.8px; color: #171616;">Film<span style="color: #009242;">Coin</span></h3>
                         <p style="font-family: 'Space Grotesk', sans-serif; font-weight: 400; font-size: 14px; line-height: 19.44px; margin-bottom: 2rem;">ERC20: The FilmCoin Utility Token will be created on the 28th February 2022 using the ERC-20 standard and
                             deployed to the Ethereum blockchain acting as a native currency for the Darkhorse Film Studios
                             decentralized application program (DAPP)</p>
@@ -44,7 +44,7 @@ exports.bodyhtmlVerification = () => `
                             and forward your wallet details to our FilmCoin customer care team.
                         </p>
 
-                        <h3 style="font-family: 'Monument Extended', 'Titillium Web', Tahoma, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 24px; line-height: 28.8px; color: #171616;">ERC<span style="color: #009242;">20</span></h3>
+                        <h3 style="font-family: 'Space Grotesk', 'Titillium Web', Tahoma, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 24px; line-height: 28.8px; color: #171616;">ERC<span style="color: #009242;">20</span></h3>
                         <p style="font-family: 'Space Grotesk', sans-serif; font-weight: 400; font-size: 14px; line-height: 19.44px; margin-bottom: 2rem;">An ERC20 token is a standard used for creating and issuing smart contracts on the Ethereum blockchain.
                             Smart contracts can then be used to create smart property or tokenized assets that people can invest in.
                             ERC stands for "Ethereum request for comment," and the ERC20 standard was implemented in 2015.</p>
@@ -70,7 +70,7 @@ exports.bodyhtmlVerification = () => `
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="https://www.instagram.com/thefilmcoin/?hl=es-la" target="_blank" style="color: #009242; margin-right: 20px;">
+                                    <a href="https://www.instagram.com/thefilmcoin/?hl=en-la" target="_blank" style="color: #009242; margin-right: 20px;">
                                         <img src="http://imgfz.com/i/IpehxQm.png" style="width: auto; height: 20px;">
                                     </a>
                                 </td>
@@ -85,7 +85,7 @@ exports.bodyhtmlVerification = () => `
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="https://www.tiktok.com/@thefilmcoin?lang=es" target="_blank" style="color: #009242; margin-right: 0;">
+                                    <a href="https://www.tiktok.com/@thefilmcoin?lang=en" target="_blank" style="color: #009242; margin-right: 0;">
                                         <img src="http://imgfz.com/i/3ZbxdB2.png" style="width: auto; height: 20px;">
                                     </a>
                                 </td>
