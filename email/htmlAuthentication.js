@@ -30,15 +30,15 @@ exports.bodyhtmlAuthentication = (token) => `
 
                 <tr width="100%" height="100%" style="background:url(http://imgfz.com/i/ONB0t4j.png), radial-gradient(78.74% 131.71% at 97.24% -34.1%, #00ED65 0%, #04C857 8.09%, #089946 19.99%, #0C7137 32.3%, #0F4F2B 44.81%, #123621 57.6%, #14231A 70.78%, #151916 84.57%, #151515 100%); background-size: cover;">
                     <td width="600" height="150" style="text-align: center;">
-                        <h1 style="margin: 10% 8% 2% 8%; font-family: 'Monument Extended', 'Titillium Web', Tahoma, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 24px; line-height: 28.8px; color: #FFFFFF;">Hey! you are one step away from buying Film<span style="color: #009242;">Coin</span></h1>
-                        <p style=" margin: 0 12% 10% 12%; color: #FFFFFF; font-family: 'Space Mono', monospace; text-transform: uppercase; font-weight: 400; line-height: 19.25px; font-size: 13px;"> We are on our 20% discounted General Pre-Sale for December 2021.</p>
+                        <h1 style="margin: 10% 8% 2% 8%; font-family: 'Space Grotesk', 'Titillium Web', Tahoma, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 24px; line-height: 28.8px; color: #FFFFFF;">Hey! you are one step away from buying Film<span style="color: #009242;">Coin</span></h1>
+                        <p style=" margin: 0 12% 10% 12%; color: #FFFFFF; font-family: 'Space Grotesk', monospace; text-transform: uppercase; font-weight: 400; line-height: 19.25px; font-size: 13px;"> We are on our 20% discounted General Pre-Sale for December 2021.</p>
                     </td>
                 </tr>
                 <tr width="100%" height="100%" bgcolor="#FFFFFF" style="color: #333333;">
                     <td width="600" height="300" style="text-align: center; padding:0 15% 0 15%;">                       
                             
                         <h3 style="font-family: 'Space Mono', monospace;">Please Click on the Following link to purchase FilmCoin:</h3>
-                        <a style="font-family: 'Space Mono', monospace; color: #009242; font-size: 24px;" href="https://thefilmcoin.io/#/payment2/?token=${token}" target="_blank">${token}</a>                
+                        <a style="font-family: 'Space Mono', monospace; color: #009242; font-size: 24px;" href="https://thefilmcoin.io/#/payment2/?token=${token}" target="_blank">Click Here</a>                        
 
                         <p style="font-family: 'Space Grotesk', sans-serif;">Please contact our customer care representatives for any further assistance:
                             <a href="mailto:support@thefilmcoin.io" target="_blank" style="color: #009242;">support@thefilmcoin.io</a>
@@ -55,7 +55,7 @@ exports.bodyhtmlAuthentication = (token) => `
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="https://www.instagram.com/thefilmcoin/?hl=es-la" target="_blank" style="color: #009242; margin-right: 20px;">
+                                    <a href="https://www.instagram.com/thefilmcoin/?hl=en-la" target="_blank" style="color: #009242; margin-right: 20px;">
                                         <img src="http://imgfz.com/i/IpehxQm.png" style="width: auto; height: 20px;">
                                     </a>
                                 </td>
@@ -70,7 +70,7 @@ exports.bodyhtmlAuthentication = (token) => `
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="https://www.tiktok.com/@thefilmcoin?lang=es" target="_blank" style="color: #009242; margin-right: 0;">
+                                    <a href="https://www.tiktok.com/@thefilmcoin?lang=en" target="_blank" style="color: #009242; margin-right: 0;">
                                         <img src="http://imgfz.com/i/3ZbxdB2.png" style="width: auto; height: 20px;">
                                     </a>
                                 </td>
