@@ -35,7 +35,6 @@ module.exports = (router) => {
       await sendInfo(req, res, myConnection)
     }
   )
-  
 
   router.post(
     "/paypaltransaction",

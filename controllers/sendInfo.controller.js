@@ -30,7 +30,7 @@ async function sendInfo (req, res, myConnection) {
         email: formData.email,
         isAuth: true
     }
-    
+
     if(req.files){
       const imgDoc = req.files.kycDocument
       formData.kycDocument = formData.email + imgDoc.name
@@ -42,7 +42,7 @@ async function sendInfo (req, res, myConnection) {
 
     try{
         await addNewContactInfo(formData, myConnection, token)
-        //await sendEmail(sendEmailObj,res)
+        await sendEmail(sendEmailObj,res)
         res.status(200).json({msg:"ok", token: token})
     }catch(err){
       console.log(err)

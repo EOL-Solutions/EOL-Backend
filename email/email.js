@@ -4,15 +4,15 @@ const nodemailer = require("nodemailer");
 
 exports.transporter = nodemailer.createTransport({
 
-  host: "smtpout.secureserver.net",
-  port: 465,
-  secure: true,
+  host: "smtp.mandrillapp.com",
+  port: 587,
+  //secure: true,
   secureConnection: false, // TLS requires secureConnection to be false
   tls: {
-    ciphers:'SSLv3',
+    //ciphers:'SSLv3',
     rejectUnauthorized: false
   },
-  requireTLS:true,
+  //requireTLS:true,
   auth: {
     user: process.env.EMAIL,
     pass: process.env.PASS,

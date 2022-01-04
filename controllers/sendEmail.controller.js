@@ -1,6 +1,9 @@
+require('dotenv').config()
+
 const { transporter } = require("../email/email");
 const { bodyhtmlAuthentication } = require("../email/htmlAuthentication")
 const { bodyhtmlVerification } = require("../email/htmlVerification")
+const mailchimp = require('@mailchimp/mailchimp_marketing');
 
 const sendEmail = async ({email, token, isAuth}, res) => {
 
