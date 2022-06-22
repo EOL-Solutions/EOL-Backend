@@ -10,11 +10,11 @@ async function StripeTransaction(req, res, myConnection){
     //Validation
     const errors = validationResult(req).errors
     if(errors.length){
-      res.status(400).json({errors:errors})
-      return
+        res.status(400).json({errors:errors})
+        return
     }
 
-    const { token, amount, currency, cardNumber, expMonth, expYear, cvc } = req.body //Lo que se necesita del front
+    const {id, token, amount, currency} = req.body //Lo que se necesita del front
     //Token Validation
     try{
         const isValid = validateToken(token)
@@ -23,21 +23,11 @@ async function StripeTransaction(req, res, myConnection){
             return
         }
 
-        const paymentMethod = await stripe.paymentMethods.create({
-            type: "card",
-            card: {
-                number:cardNumber,
-                exp_month: expMonth,
-                exp_year: expYear,
-                cvc: cvc
-            }
-        })
-
         const payment = await stripe.paymentIntents.create({
             amount,
             currency,
             description: "Here is going to be a description, but we don't have it yet :(",
-            payment_method: paymentMethod.id, //aqui va el id del metodo de pago
+            payment_methoid: id, //aqui va el id del metodo de pago
             confirm: true, //confirm the payment at the same time
         })
 
@@ -51,7 +41,7 @@ async function StripeTransaction(req, res, myConnection){
         //     res.status(400).json({message:"Invalid Token"})
         //     return
         // }
-        res.status(200).json({message:"Success"})
+        res.status(200).json({message:"Payment successfull"})
     }catch(err){
         console.log(err)
         res.status(500).json({message:"Internal Server Error"})
