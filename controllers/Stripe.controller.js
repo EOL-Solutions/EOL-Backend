@@ -34,12 +34,13 @@ async function StripeTransaction(req, res, myConnection){
 
         //Para conectar con la base de datos, en donde el id va a ser el orderID
 
-        // await addOrderID(myConnection, id, token, amount, currency)
-        // const email = await getEmailByToken(myConnection, token)
-        // if(!email){
-        //     res.status(400).json({message:"Invalid Token"})
-        //     return
-        // }
+        await addOrderID(myConnection, orderID, token, amount, currency)
+        const email = await getEmailByToken(myConnection, token)
+        if(!email){
+            res.status(400).json({message:"Invalid Token"})
+            return
+        }
+
         res.status(200).json({message:"Payment successfull"})
     }catch(err){
         console.log(err)
