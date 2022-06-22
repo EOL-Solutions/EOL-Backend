@@ -14,7 +14,7 @@ async function StripeTransaction(req, res, myConnection){
         return
     }
 
-    const {id, token, amount, currency} = req.body //Lo que se necesita del front
+    const {orderID, token, amount, currency} = req.body //Lo que se necesita del front
     //Token Validation
     try{
         const isValid = validateToken(token)
@@ -27,12 +27,11 @@ async function StripeTransaction(req, res, myConnection){
             amount,
             currency,
             description: "Here is going to be a description, but we don't have it yet :(",
-            payment_methoid: id, //aqui va el id del metodo de pago
+            payment_methoid: orderID, //aqui va el id del metodo de pago
             confirm: true, //confirm the payment at the same time
         })
 
-        const { id } = payment
-        console.log(id)
+
         //Para conectar con la base de datos, en donde el id va a ser el orderID
 
         // await addOrderID(myConnection, id, token, amount, currency)
