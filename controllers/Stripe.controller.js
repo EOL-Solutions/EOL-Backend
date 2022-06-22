@@ -27,7 +27,7 @@ async function StripeTransaction(req, res, myConnection){
             amount,
             currency,
             description: "Here is going to be a description, but we don't have it yet :(",
-            payment_methoid: orderID, //aqui va el id del metodo de pago
+            payment_method: orderID, //aqui va el id del metodo de pago
             confirm: true, //confirm the payment at the same time
         })
 
