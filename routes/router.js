@@ -1,9 +1,10 @@
 const { body } = require("express-validator");
-
+const Stripe = require("stripe");
 // Controladores
 const { createConnection } = require("../controllers/sqlQueries.controller");
 const { sendInfo } = require("../controllers/sendInfo.controller")
 const { paypalTransaction } = require("../controllers/paypalTransaction.controller")
+const {StripeTransaction} = require("../controllers/Stripe.controller")
 
 const myConnection = createConnection()
 
@@ -48,5 +49,13 @@ module.exports = (router) => {
       await paypalTransaction(req, res, myConnection)
     }
   )
-
+  router.post("/StripeTransaction", [
+    body("token").isAlphanumeric('en-US', {ignore: ' -'}).not().isEmpty(),
+    body("orderID").isAlphanumeric('en-US', {ignore: ' -'}).not().isEmpty(),
+    body("amount").isFloat().not().isEmpty(),
+    body("currency").isAlpha().not().isEmpty()
+  ],
+  async (req,res) => {
+    await StripeTransaction(req, res, myConnection)
+  });
 }
