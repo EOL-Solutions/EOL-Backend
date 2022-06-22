@@ -14,7 +14,7 @@ async function StripeTransaction(req, res, myConnection){
       return
     }
 
-    const { token, amount, cardNumber, expMonth, expYear, cvc } = req.body //Lo que se necesita del front
+    const { token, amount, currency, cardNumber, expMonth, expYear, cvc } = req.body //Lo que se necesita del front
     //Token Validation
     try{
         const isValid = validateToken(token)
@@ -26,19 +26,19 @@ async function StripeTransaction(req, res, myConnection){
         const paymentMethod = await stripe.paymentMethods.create({
             type: "card",
             card: {
-                number: "4242424242424242", //cardNumber
-                exp_month: 12,  //expMonth
-                exp_year: 2023, //expYear
-                cvc: 314  //cvc
+                number:cardNumber,
+                exp_month: expMonth,
+                exp_year: expYear,
+                cvc: cvc
             }
         })
 
         const payment = await stripe.paymentIntents.create({
-          amount,
-          currency: "USD",
-          description: "Here is going to be a description, but we don't have it yet :(",
-          payment_method: paymentMethod.id, //aqui va el id del metodo de pago
-          confirm: true, //confirm the payment at the same time
+            amount,
+            currency,
+            description: "Here is going to be a description, but we don't have it yet :(",
+            payment_method: paymentMethod.id, //aqui va el id del metodo de pago
+            confirm: true, //confirm the payment at the same time
         })
 
         const { id } = payment
