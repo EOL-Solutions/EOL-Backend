@@ -24,7 +24,7 @@ module.exports = (router) => {
       body("country").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}),
       body("name").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}).not().isEmpty(),
       body("lastname").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}).not().isEmpty(),
-      body("address").isAlphanumeric('en-US', {ignore: ' -'}),
+      body("address").isAlphanumeric('en-US', {ignore: ' -#'}),
       body("wallet").isAlphanumeric().not().isEmpty(),
       body("city").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}),
       body("province").isAlpha('en-US', {ignore: /[\xE0-\xFF' ']/g}),

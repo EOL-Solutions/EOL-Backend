@@ -26,7 +26,7 @@ async function StripeTransaction(req, res, myConnection){
         const payment = await stripe.paymentIntents.create({
             amount,
             currency,
-            description: "Here is going to be a description, but we don't have it yet :(",
+            description: "Thank you for your purchase.",
             payment_method: orderID, //aqui va el id del metodo de pago
             confirm: true, //confirm the payment at the same time
         })
