@@ -5,6 +5,7 @@ const { createConnection } = require("../controllers/sqlQueries.controller");
 const { sendInfo } = require("../controllers/sendInfo.controller")
 const { paypalTransaction } = require("../controllers/paypalTransaction.controller")
 const {StripeTransaction} = require("../controllers/Stripe.controller")
+const {StripeTransactionTest} = require("../controllers/StripeTest.controller")
 
 const myConnection = createConnection()
 
@@ -57,5 +58,15 @@ module.exports = (router) => {
   ],
   async (req,res) => {
     await StripeTransaction(req, res, myConnection)
+  });
+
+  router.post("/testStripe", [
+    body("token").isAlphanumeric('en-US', {ignore: ' -'}).not().isEmpty(),
+    body("orderID").isAlphanumeric('en-US', {ignore: ' -_'}).not().isEmpty(),
+    body("amount").isFloat().not().isEmpty(),
+    body("currency").isAlpha().not().isEmpty()
+  ],
+  async (req,res) => {
+    await StripeTransactionTest(req, res, myConnection)
   });
 }
