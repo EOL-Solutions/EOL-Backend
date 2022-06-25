@@ -61,7 +61,6 @@ module.exports = (router) => {
   });
 
   router.post("/testStripe", [
-    
     body("orderID").isAlphanumeric('en-US', {ignore: ' -_'}).not().isEmpty(),
     body("amount").isFloat().not().isEmpty(),
     body("currency").isAlpha().not().isEmpty()

@@ -41,5 +41,5 @@ async function StripeTransaction(req, res, myConnection){
 
 
 
-module.exports = {StripeTransaction}
+module.exports = {StripeTransactionTest}
 
