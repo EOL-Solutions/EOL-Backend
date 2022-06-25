@@ -3,7 +3,7 @@ const Stripe = require("stripe");
 const stripe = new Stripe(process.env.PRIVATE_TEST);
 
 const { validationResult } = require("express-validator")
-const { validateToken } = require("./uuid.controller")
+
 
 async function StripeTransaction(req, res, myConnection){
     //Validation
@@ -16,7 +16,6 @@ async function StripeTransaction(req, res, myConnection){
     const {orderID, token, amount, currency} = req.body //Lo que se necesita del front
     //Token Validation
     try{
-        const isValid = validateToken(token)
         if(!isValid){
             res.status(400).json({message:"Invalid Token"})
             return
