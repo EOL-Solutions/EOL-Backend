@@ -5,7 +5,7 @@ const stripe = new Stripe(process.env.PRIVATE_TEST);
 const { validationResult } = require("express-validator")
 
 
-async function StripeTransaction(req, res, myConnection){
+async function StripeTransactionTest(req, res, myConnection){
     //Validation
     const errors = validationResult(req).errors
     if(errors.length){
