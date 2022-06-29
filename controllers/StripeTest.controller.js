@@ -14,12 +14,8 @@ async function StripeTransactionTest(req, res, myConnection){
     }
 
     const {orderID, token, amount, currency} = req.body //Lo que se necesita del front
-    //Token Validation
+
     try{
-        if(!isValid){
-            res.status(400).json({message:"Invalid Token"})
-            return
-        }
 
         const payment = await stripe.paymentIntents.create({
             amount,
