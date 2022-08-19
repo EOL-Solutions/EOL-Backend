@@ -16,7 +16,7 @@ function createConnection() {
 
 async function getAllData(connection){
   return new Promise((resolve, reject) => {
-    const query = `SELECT * FROM contact_information LIMIT 100;`
+    const query = `SELECT * FROM contact_information;`
     //const query2 = `SELECT * FROM transactions;`
     //const query3 = `SELECT * FROM temp_amount_tracking;`
     try{
