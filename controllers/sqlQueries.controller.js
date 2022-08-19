@@ -14,6 +14,35 @@ function createConnection() {
     return mysql.createConnection(configConnection)
 }
 
+async function getAllData(connection){
+  return new Promise((resolve, reject) => {
+    const query = `SELECT * FROM contact_information LIMIT 100;`
+    //const query2 = `SELECT * FROM transactions;`
+    //const query3 = `SELECT * FROM temp_amount_tracking;`
+    try{
+      connection.query(query, (err, result) =>{
+	if(err) throw err
+	resolve({contact_information: result})
+	/*
+	connection.query(query2, (err2, result2) =>{
+	  if(err2) throw err2
+	  connection.query(query3, (err3, result3) =>{
+	    if(err3) throw err3
+	    resolve({
+	      contact_information: result,
+	      transactions: result2,
+	      temp_amount_tracking: result3
+	    })
+	  })
+	})
+	*/
+      })
+    }catch(err){
+      reject(err)
+    }
+  })
+}
+
 async function addNewContactInfo({email, country, name, lastname, address, wallet, city, province, zipcode, phone, kycDocument, refCode}, connection, token){
     try{
         const countriesQuery = `(SELECT code FROM countries WHERE name='${country}')`   //Change country with this query
@@ -86,5 +115,6 @@ module.exports = {
     createConnection,
     addNewContactInfo,
     addOrderID,
-    getEmailByToken
+    getEmailByToken,
+    getAllData
 }
