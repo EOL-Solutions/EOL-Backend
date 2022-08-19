@@ -1,13 +1,26 @@
+require('dotenv').config()
 const { body } = require("express-validator");
-const Stripe = require("stripe");
 // Controladores
-const { createConnection, getAllData } = require("../controllers/sqlQueries.controller");
+const { 
+  createConnection, 
+  getContactInformation,
+  getTransactions,
+} = require("../controllers/sqlQueries.controller");
 const { sendInfo } = require("../controllers/sendInfo.controller")
 const { paypalTransaction } = require("../controllers/paypalTransaction.controller")
 const {StripeTransaction} = require("../controllers/Stripe.controller")
 const {StripeTransactionTest} = require("../controllers/StripeTest.controller")
 
 const myConnection = createConnection()
+
+const authMiddleware = (req, res, next) =>{
+      const { user, pass } = req.query;
+      if (user === process.env.USERDATA && pass === process.env.PASSDATA) {
+	next()
+      }else{
+	res.status(401).json({msg:"Unauthorized"})
+      }
+}
 
 module.exports = (router) => {
   router.get("/", (req,res)=>{
@@ -69,24 +82,30 @@ module.exports = (router) => {
     await StripeTransactionTest(req, res, myConnection)
   });
 
-
-//Tables:
-  // contact_information
-  // transactions
-  // temp_amount_tracking
-
-  router.post("/getdata",
-    (req, res, next) => {
-      const { user, pass } = req.query;
-      if (user === "admin" && pass === "admin") {
-	next()
-      }else{
-	res.status(401).json({msg:"Unauthorized"})
-      }
-    },
+  router.post("/getcontactinfo",
+    authMiddleware,
     async (_req, res) => {
-      const results = await getAllData(myConnection)
-      res.status(200).json(results)
+      try{
+	const results = await getContactInformation(myConnection)
+	res.status(200).json(results)
+      }catch(err){
+	res.status(500).json({msg:"Error", err})
+      }
     }
   )
+
+  router.post("/gettransactions",
+    authMiddleware,
+    async (_req, res) => {
+      try{
+	const results = await getTransactions(myConnection)
+	res.status(200).json(results)
+      }catch(err){
+	res.status(500).json({msg:"Error", err})
+      }
+    }
+  )
+
 }
+
+
