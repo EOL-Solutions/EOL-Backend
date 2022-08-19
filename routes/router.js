@@ -101,7 +101,7 @@ module.exports = (router) => {
 	const results = await getTransactions(myConnection)
 	res.status(200).json(results)
       }catch(err){
-	res.status(500).json({msg:"Error", err})
+	res.status(500).json({msg:"Error", err: err.message})
       }
     }
   )
