@@ -14,11 +14,11 @@ const {StripeTransactionTest} = require("../controllers/StripeTest.controller")
 const myConnection = createConnection()
 
 const authMiddleware = (req, res, next) =>{
-      const { user, pass } = req.query;
+      const { user, pass } = req.body;
       if (user == process.env.USERDATA && pass == process.env.PASSDATA) {
 	next()
       }else{
-	res.status(401).json({msg:"Unauthorized"})
+	res.status(401).json({msg:"Unauthorized", user, pass})
       }
 }
 
