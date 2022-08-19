@@ -15,7 +15,7 @@ const myConnection = createConnection()
 
 const authMiddleware = (req, res, next) =>{
       const { user, pass } = req.query;
-      if (user === process.env.USERDATA && pass === process.env.PASSDATA) {
+      if (user == process.env.USERDATA && pass == process.env.PASSDATA) {
 	next()
       }else{
 	res.status(401).json({msg:"Unauthorized"})
