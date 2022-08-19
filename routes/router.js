@@ -18,7 +18,7 @@ const authMiddleware = (req, res, next) =>{
       if (user == process.env.USERDATA && pass == process.env.PASSDATA) {
 	next()
       }else{
-	res.status(401).json({msg:"Unauthorized", user, pass})
+	res.status(401).json({msg:"Unauthorized"})
       }
 }
 
