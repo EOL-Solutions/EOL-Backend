@@ -28,7 +28,7 @@ async function getContactInformation(connection){
   })
 }
 
-async function getTransctions(connection){
+async function getTransactions(connection){
   const query = `SELECT * FROM transactions;`
   return new Promise((resolve, reject) => {
     try{
@@ -117,5 +117,5 @@ module.exports = {
     addOrderID,
     getEmailByToken,
     getContactInformation,
-    getTransctions
+    getTransactions
 }
