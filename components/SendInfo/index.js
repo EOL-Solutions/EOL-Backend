@@ -23,6 +23,7 @@ module.exports = ({ contactInfo }, { sendEmail }) => {
       async (req, res) => {
         const errors = validationResult(req).errors
         if (errors.length) { return res.status(400).json({ errors }) }
+
         const token = uuidv4()
         const formData = {
           email: req.body.email.toLowerCase(),

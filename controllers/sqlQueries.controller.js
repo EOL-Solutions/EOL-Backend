@@ -109,10 +109,10 @@ async function getEmailByToken (connection, token) {
 }
 
 module.exports = {
-  createConnection,
+  getContactInformation,
   addNewContactInfo,
+  createConnection,
   addOrderID,
   getEmailByToken,
-  getContactInformation,
   getTransactions
 }
