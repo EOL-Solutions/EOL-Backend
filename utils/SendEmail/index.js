@@ -1,8 +1,8 @@
 require('dotenv').config()
 
-const { transporter } = require('../email/email')
-const { bodyhtmlAuthentication } = require('../email/htmlAuthentication')
-const { bodyhtmlVerification } = require('../email/htmlVerification')
+const { transporter } = require('./email')
+const { bodyhtmlAuthentication } = require('./htmlAuthentication')
+const { bodyhtmlVerification } = require('./htmlVerification')
 
 const sendEmail = async ({ email, token, isAuth }, res) => {
   const subject = isAuth ? 'Authentication email' : 'FilmCoin Transaction Successful'
