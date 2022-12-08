@@ -20,8 +20,8 @@ const sendEmail = async ({ email, token, isAuth }, res) => {
     if (error) {
       return console.log(error)
     }
-    res.status(200).send({ message: 'Mail send', message_id: info.messageId })
+    res.status(200).send({ message: 'Mail send', messageId: info.messageId })
   })
 }
 
-module.exports = { sendEmail }
+module.exports = sendEmail

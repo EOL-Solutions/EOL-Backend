@@ -2,7 +2,7 @@ const express = require('express')
 const { v4: uuidv4, validate } = require('uuid')
 const { body, validationResult } = require('express-validator')
 
-module.exports = ({}, {}) => {
+module.exports = ({}, { sendEmail }) => {
   const router = express.Router()
 
   router.route('/')
