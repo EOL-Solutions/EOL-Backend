@@ -1,12 +1,12 @@
 const express = require('express')
-const { v4: uuidv4, validate } = require('uuid')
+const { v4: uuidv4 } = require('uuid')
 const { body, validationResult } = require('express-validator')
 
-module.exports = ({}, { sendEmail }) => {
+module.exports = ({ contactInfo }, { sendEmail }) => {
   const router = express.Router()
 
   router.route('/')
-    .get(
+    .post(
       [
         body('email').isEmail().not().isEmpty(),
         body('country').isAlpha('en-US', { ignore: /[\xE0-\xFF' ']/g }),
@@ -20,7 +20,7 @@ module.exports = ({}, { sendEmail }) => {
         body('phone').isInt().not().isEmpty(),
         body('refCode').isAlphanumeric()
       ],
-      (req, res) => {
+      async (req, res) => {
         const errors = validationResult(req).errors
         if (errors.length) { return res.status(400).json({ errors }) }
         const token = uuidv4()
@@ -42,6 +42,14 @@ module.exports = ({}, { sendEmail }) => {
           token,
           email: formData.email,
           isAuth: true
+        }
+
+        try {
+          contactInfo.addNewContactInformation(formData, token)
+          const messageId = await sendEmail(sendEmailObj)
+          res.status(200).json({ message: 'success', messageId })
+        } catch (err) {
+          res.status(400).json({ message: 'error', err })
         }
       }
     )
