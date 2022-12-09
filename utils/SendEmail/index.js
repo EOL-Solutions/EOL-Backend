@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const { transporter } = require('./email')
 const { bodyhtmlAuthentication } = require('./htmlAuthentication')
 const { bodyhtmlVerification } = require('./htmlVerification')
