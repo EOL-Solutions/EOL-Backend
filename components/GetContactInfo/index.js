@@ -15,4 +15,6 @@ module.exports = ({ contactInfo }, { middleware }) => {
         }
       }
     )
+
+  return router
 }

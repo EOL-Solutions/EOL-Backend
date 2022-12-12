@@ -33,4 +33,6 @@ module.exports = ({ transaction }, { sendEmail }) => {
         }
       }
     )
+
+  return router
 }

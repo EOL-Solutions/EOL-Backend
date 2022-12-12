@@ -122,15 +122,23 @@ This is the structure for the database in this project:
 | transactionID | int(11)      | NOT NULL.    |
 | kyc_document  | varchar(255) | NULL.        |
 
-
 ### transactions
 
-| NAME    | TYPE         | DESCRIPTION  |
-|:-------:|:------------:|:------------:|
-| id      | int(11)      | PRIMARY KEY. |
-| token   | varchar(255) | NOT NULL.    |
-| refCode | varchar(255) | NULL.        |
-| orderID | varchar(255) | NOT NULL.    |
+| NAME     | TYPE         | DESCRIPTION  |
+|:--------:|:------------:|:------------:|
+| id       | int(11)      | PRIMARY KEY. |
+| token    | varchar(255) | NOT NULL.    |
+| ref_code | varchar(255) | NULL.        |
+| orderID  | varchar(255) | NULL.        |
+
+### temp_amount_tracking
+
+| NAME            | TYPE         | DESCRIPTION  |
+|:---------------:|:------------:|:------------:|
+| id              | int(11)      | PRIMARY KEY. |
+| ref_code_temp   | varchar(255) | NOT NULL.    |
+| amount          | varchar(255) | NOT NULL.    |
+| currency        | varchar(255) | NOT NULL.    |
 
 ---
 
@@ -199,7 +207,7 @@ There are six endpoints
 - pass (required): String
 
 
-### /getcontactinfo
+### /gettransactions
 
 #### POST(/): { results }
 

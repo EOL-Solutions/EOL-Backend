@@ -15,4 +15,6 @@ module.exports = ({ transaction }, { middleware }) => {
         }
       }
     )
+
+  return router
 }

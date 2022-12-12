@@ -1,7 +1,7 @@
-const sendEmail = require('./SendEmail/index')
-const middleware = require('./Middleware/index')
+// const sendEmail = require('./SendEmail/index')
+const middleware = require('./Middlewares/index')
 
 module.exports = {
-  sendEmail,
+  sendEmail: () => new Promise(resolve => resolve('email sent')),
   middleware
 }

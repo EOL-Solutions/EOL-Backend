@@ -42,4 +42,6 @@ module.exports = ({ transaction }) => {
         }
       }
     )
+
+  return router
 }

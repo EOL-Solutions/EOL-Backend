@@ -34,4 +34,6 @@ module.exports = () => {
         }
       }
     )
+
+  return router
 }

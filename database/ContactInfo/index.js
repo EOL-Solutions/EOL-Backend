@@ -34,9 +34,8 @@ function addNewContactInformation ({ email, country, name, lastname, address, wa
       if (err) { throw err }
       const id = result.insertId
       const contactQueryParams = [email, country, name, lastname, address, wallet, city, province, zipcode, phone, id, kycDocument]
-      conn.query(contactQuery, contactQueryParams, (err, result) => {
+      conn.query(contactQuery, contactQueryParams, (err) => {
         if (err) { throw err }
-        console.log(result)
       })
     })
   } catch (err) {
