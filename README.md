@@ -13,9 +13,9 @@ Structure for this repo is based on microservices architecture, so this is the f
 |- app.js
 |- .env
 |- /database
-|  |
-|  |- index.js
-|  |
+|  |
+|  |- index.js
+|  |
 |  |- connection.js
 |  |- /ContactInfo
 |  |  |
@@ -26,29 +26,29 @@ Structure for this repo is based on microservices architecture, so this is the f
 |  |  |- index.js
 |
 |- /components
-|  |
-|  |- index.js
-|  |
-|  |- /GetContactInfo
-|  |  |
-|  |  |- index.js
-|  |
-|  |- /GetTransactions
-|  |  |
-|  |  |- index.js
-|  |
-|  |- /PaypalTransaction
-|  |  |
-|  |  |- index.js
 |  |
-|  |- /SendInfo
-|  |  |
-|  |  |- index.js
+|  |- index.js
 |  |
-|  |- /StripeTransaction
-|  |  |
-|  |  |- index.js
-|  |  |- test.js
+|  |- /GetContactInfo
+|  |  |
+|  |  |- index.js
+|  |
+|  |- /GetTransactions
+|  |  |
+|  |  |- index.js
+|  |
+|  |- /PaypalTransaction
+|  |  |
+|  |  |- index.js
+|  |
+|  |- /SendInfo
+|  |  |
+|  |  |- index.js
+|  |
+|  |- /StripeTransaction
+|  |  |
+|  |  |- index.js
+|  |  |- test.js
 |
 |- /utils
 |  |
